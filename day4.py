@@ -13,13 +13,24 @@ def exists(a: list, x: int) -> bool:
   i = bisect.bisect_left(a, x)
   return i != len(a) and a[i] == x
 
+cards = []
+for _ in range(300):
+  cards.append(0)
+
+idx = 0
 sum = 0
 with open('input.txt', 'r') as input:
   for line in input:
     # print (parse(line))
     win, my = parse(line)
+    cards[idx] += 1
     count = 0
     for num in my:
       count += int(exists(win, num))
-    sum += 1 << (count - 1) if count else 0
+    for i in range(count):
+      cards[idx + i + 1] += cards[idx]
+    sum += cards[idx]
+    idx += 1
+    # sum += 1 << (count - 1) if count else 0
+
 print(sum)
