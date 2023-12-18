@@ -5,20 +5,15 @@ def win (time, distance, hold) -> bool:
 
 cases = []
 with open ('input.txt', 'r') as input:
-  times = list(map(int, input.readline().split(':')[1].split()))
-  distances = list(map(int, input.readline().split(':')[1].split()))
-for i in range(len(times)):
-  cases.append((times[i], distances[i]))
-print(cases)
+  # times = list(map(int, input.readline().split(':')[1].split()))
+  # distances = list(map(int, input.readline().split(':')[1].split()))
+  time = int(input.readline().split(':')[1].replace(' ', ''))
+  distance = int(input.readline().split(':')[1].replace(' ', ''))
+print (time,distance)
 
-sums = []
-for case in cases:
-  sum = 0
-  for i in range(case[0]):
-    if win(case[0], case[1], i):
-      sum += 1
-  sums.append(sum)
+sum = 0
+for i in range(time):
+  if win(time, distance, i):
+    sum += 1
 
-import functools
-print(functools.reduce(lambda a,b: a*b, sums))
-  
+print(sum)
